@@ -17,8 +17,11 @@ export function getSettingsHTML() {
                     <label style="margin-right: 15px;">
                         <input type="radio" name="theme" value="light" checked id="theme-light"> Light
                     </label>
-                    <label>
+                    <label style="margin-right: 15px;">
                         <input type="radio" name="theme" value="dark" id="theme-dark"> Dark
+                    </label>
+                    <label>
+                        <input type="radio" name="theme" value="true-black" id="theme-true-black"> True Black
                     </label>
                 </div>
             </div>
@@ -31,6 +34,7 @@ export function initSettings(windowEl) {
     const inputBgUrl = windowEl.querySelector('#bg-url');
     const themeLight = windowEl.querySelector('#theme-light');
     const themeDark = windowEl.querySelector('#theme-dark');
+    const themeTrueBlack = windowEl.querySelector('#theme-true-black');
 
     // Restore saved settings
     const savedBg = localStorage.getItem('webos_bg');
@@ -39,6 +43,8 @@ export function initSettings(windowEl) {
     const savedTheme = localStorage.getItem('webos_theme') || 'light';
     if (savedTheme === 'dark') {
         themeDark.checked = true;
+    } else if (savedTheme === 'true-black') {
+        themeTrueBlack.checked = true;
     }
 
     btnApplyBg.addEventListener('click', () => {
@@ -55,24 +61,17 @@ export function initSettings(windowEl) {
 
     themeLight.addEventListener('change', () => setTheme('light'));
     themeDark.addEventListener('change', () => setTheme('dark'));
+    themeTrueBlack.addEventListener('change', () => setTheme('true-black'));
 
     function setTheme(mode) {
-        if (mode === 'dark') {
-            document.documentElement.style.setProperty('--bg-color', '#1e1e1e');
-            document.documentElement.style.setProperty('--window-bg', '#2d2d2d');
-            document.documentElement.style.setProperty('--text-color', '#f0f0f0');
-            document.documentElement.style.setProperty('--shadow-light', '#3b3b3b');
-            document.documentElement.style.setProperty('--shadow-dark', '#151515');
-            document.documentElement.style.setProperty('--taskbar-bg', 'rgba(45, 45, 45, 0.85)');
-        } else {
-            // Light (Default)
-            document.documentElement.style.setProperty('--bg-color', '#e0e5ec');
-            document.documentElement.style.setProperty('--window-bg', '#e0e5ec');
-            document.documentElement.style.setProperty('--text-color', '#333');
-            document.documentElement.style.setProperty('--shadow-light', '#ffffff');
-            document.documentElement.style.setProperty('--shadow-dark', '#a3b1c6');
-            document.documentElement.style.setProperty('--taskbar-bg', 'rgba(224, 229, 236, 0.85)');
+        // Remove previous theme class
+        document.body.removeAttribute('data-theme');
+
+        // Add new theme if not light
+        if (mode !== 'light') {
+            document.body.setAttribute('data-theme', mode);
         }
+
         localStorage.setItem('webos_theme', mode);
     }
 }

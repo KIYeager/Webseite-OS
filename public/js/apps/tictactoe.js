@@ -211,4 +211,30 @@ export function initTicTacToe(windowEl) {
 
     cells.forEach(cell => cell.addEventListener('click', handleCellClick));
     btnRestart.addEventListener('click', restartGame);
+
+    // Dynamic resizing
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const { width, height } = entry.contentRect;
+            const size = Math.min(width, height);
+
+            // Limit minimum size
+            const minSize = 200;
+            const newSize = Math.max(minSize, size - 40); // Subtract padding
+
+            boardEl.style.width = `${newSize}px`;
+            boardEl.style.height = `${newSize}px`;
+
+            // Scale font size proportionally
+            const newFontSize = Math.max(2, newSize / 60);
+            cells.forEach(cell => {
+                cell.style.fontSize = `${newFontSize}rem`;
+            });
+        }
+    });
+
+    const windowContent = windowEl.querySelector('.window-content');
+    if (windowContent) {
+        resizeObserver.observe(windowContent);
+    }
 }

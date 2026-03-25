@@ -78,6 +78,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         windowManager.createWindow('Welcome', '<p>Welcome to Web OS! Click the <b>Start</b> button below to launch apps.</p>');
     }, 500);
+
+    // Online Users WebSocket Connection
+    const socket = window.io();
+    const onlineUsersCount = document.getElementById('online-users-count');
+
+    socket.on('online_users_update', (count) => {
+        if (onlineUsersCount) {
+            onlineUsersCount.textContent = count;
+        }
+    });
 });
 
 function launchApp(appType, wm) {

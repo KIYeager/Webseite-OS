@@ -23,8 +23,10 @@ export function initSnake(windowEl) {
     const scoreEl = windowEl.querySelector('#snake-score');
     const overlay = windowEl.querySelector('#snake-overlay');
 
+    const container = windowEl.querySelector('.snake-canvas-container');
+
     const gridSize = 15;
-    const tileCount = canvas.width / gridSize;
+    let tileCount = canvas.width / gridSize;
 
     let snake = [];
     let food = {};
@@ -162,6 +164,28 @@ export function initSnake(windowEl) {
     });
 
     btnStart.addEventListener('click', startGame);
+
+    // Handle resizing dynamically using ResizeObserver
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const { width, height } = entry.contentRect;
+            // Get the smallest dimension to keep the canvas square
+            const size = Math.floor(Math.min(width, height));
+
+            // Adjust to fit neatly into the grid
+            const newCanvasSize = Math.floor(size / gridSize) * gridSize;
+
+            // We scale via CSS rather than true canvas size so we don't mess up game coordinate scaling
+            canvas.style.width = `${newCanvasSize}px`;
+            canvas.style.height = `${newCanvasSize}px`;
+
+            if (!isPlaying) {
+                 draw();
+            }
+        }
+    });
+
+    resizeObserver.observe(container);
 
     // Initial draw
     draw();

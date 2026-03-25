@@ -16,8 +16,12 @@ let waitingPlayers = {
     pong: null
 };
 
+let onlineUsers = 0;
+
 io.on('connection', (socket) => {
     console.log('A user connected:', socket.id);
+    onlineUsers++;
+    io.emit('online_users_update', onlineUsers);
 
     // General lobby logic
     socket.on('join_game', (gameType) => {
@@ -74,6 +78,9 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log('User disconnected:', socket.id);
+        onlineUsers--;
+        io.emit('online_users_update', onlineUsers);
+
         // Clean up waiting queues
         if (waitingPlayers.tictactoe === socket) waitingPlayers.tictactoe = null;
         if (waitingPlayers.pong === socket) waitingPlayers.pong = null;
