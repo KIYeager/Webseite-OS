@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web OS Simulator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/apps.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="desktop">
+        <div class="desktop-icon" data-app="notepad">
+            <div class="icon">📝</div>
+            <div class="label">Notepad</div>
+        </div>
+        <div class="desktop-icon" data-app="calculator">
+            <div class="icon">🧮</div>
+            <div class="label">Calculator</div>
+        </div>
+        <div class="desktop-icon" data-app="settings">
+            <div class="icon">⚙️</div>
+            <div class="label">Settings</div>
+        </div>
+        <div class="desktop-icon" data-app="tictactoe">
+            <div class="icon">❌</div>
+            <div class="label">Tic-Tac-Toe</div>
+        </div>
+        <div class="desktop-icon" data-app="snake">
+            <div class="icon">🐍</div>
+            <div class="label">Snake</div>
+        </div>
+        <div class="desktop-icon" data-app="pong">
+            <div class="icon">🏓</div>
+            <div class="label">Pong</div>
+        </div>
+        <div class="desktop-icon" data-app="memory">
+            <div class="icon">🧠</div>
+            <div class="label">Memory</div>
+        </div>
+        <div class="desktop-icon" data-app="minesweeper">
+            <div class="icon">💣</div>
+            <div class="label">Minesweeper</div>
+        </div>
+    </div>
+
+    <div id="window-container">
+        <!-- Windows will be injected here -->
+    </div>
+
+    <div id="start-menu" class="hidden">
+        <div class="start-menu-header">
+            <h3>Web OS Programs</h3>
+        </div>
+        <div class="start-menu-items">
+            <div class="start-item" data-app="notepad">📝 Notepad</div>
+            <div class="start-item" data-app="calculator">🧮 Calculator</div>
+            <div class="start-item" data-app="settings">⚙️ Settings</div>
+            <hr>
+            <div class="start-item" data-app="tictactoe">❌⭕ Tic-Tac-Toe</div>
+            <div class="start-item" data-app="snake">🐍 Snake</div>
+            <div class="start-item" data-app="pong">🏓 Pong</div>
+            <div class="start-item" data-app="memory">🧠 Memory</div>
+            <div class="start-item" data-app="minesweeper">💣 Minesweeper</div>
+        </div>
+    </div>
+
+    <div id="taskbar">
+        <div id="start-button">🚀 Start</div>
+        <div id="open-apps">
+            <!-- Taskbar items for open apps -->
+        </div>
+        <div id="system-tray">
+            <div id="clock">00:00</div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

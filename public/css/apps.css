@@ -1,0 +1,130 @@
+/* Notepad */
+.notepad-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.notepad-toolbar {
+    padding: 5px 0 10px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.notepad-toolbar button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background: var(--window-bg);
+    box-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+    cursor: pointer;
+    color: var(--text-color);
+}
+.notepad-toolbar button:active {
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+}
+#np-status {
+    font-size: 0.85em;
+    color: #4facfe;
+}
+#np-textarea {
+    flex-grow: 1;
+    resize: none;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--window-bg);
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+    color: var(--text-color);
+    outline: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Calculator */
+.calculator-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 15px;
+    justify-content: space-between;
+}
+.calc-display {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    font-size: 1.5em;
+    font-family: 'Courier New', Courier, monospace;
+    background: var(--window-bg);
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    color: var(--text-color);
+}
+.calc-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    flex-grow: 1;
+}
+.calc-btn {
+    border: none;
+    border-radius: 8px;
+    background: var(--window-bg);
+    box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.1s ease;
+}
+.calc-btn:active {
+    box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+}
+.calc-btn.zero {
+    grid-column: span 2;
+}
+.btn-op {
+    color: #f39c12;
+    font-weight: bold;
+}
+.btn-action {
+    color: #e74c3c;
+    font-weight: bold;
+}
+.btn-equal {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Settings */
+.settings-app {
+    color: var(--text-color);
+}
+.setting-group {
+    background: var(--window-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+}
+.settings-app button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    background: var(--window-bg);
+    box-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+    cursor: pointer;
+    color: var(--text-color);
+}
+.settings-app button:active {
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+}
+.settings-app input[type="text"] {
+    border: none;
+    border-radius: 4px;
+    background: var(--window-bg);
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+    color: var(--text-color);
+    outline: none;
+}
