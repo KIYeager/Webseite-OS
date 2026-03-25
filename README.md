@@ -1,1 +1,1 @@
-# Webseite-OS
+# Webseite-OS\n## How to run\n\nRun the following commands in the root directory of the project:\n\n```bash\nnpm install\nnpm start\n```\n\nThen, open your browser and navigate to `http://localhost:3000`.
