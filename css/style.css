@@ -1,0 +1,178 @@
+/* General Reset and Typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+}
+
+/* Desktop */
+#desktop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 40px; /* Leave space for taskbar */
+    background-image: url('https://images.unsplash.com/photo-1506744626753-1fa44df31c28?auto=format&fit=crop&q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Important for windows that might be dragged outside */
+}
+
+/* Taskbar */
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: rgba(30, 30, 30, 0.9);
+    backdrop-filter: blur(10px); /* Neumorphism/Modern touch */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: white;
+    z-index: 10000; /* Always on top */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#start-button {
+    padding: 5px 15px;
+    background-color: #0078D7;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+#start-button:hover {
+    background-color: #005A9E;
+}
+
+#open-apps {
+    flex-grow: 1;
+    display: flex;
+    margin-left: 10px;
+    gap: 5px;
+}
+
+.taskbar-item {
+    padding: 5px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.taskbar-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.taskbar-item.active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#system-tray {
+    display: flex;
+    align-items: center;
+}
+
+#clock {
+    font-size: 14px;
+    user-select: none;
+    cursor: default;
+    padding: 0 10px;
+}
+
+/* Window */
+.os-window {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* initial top/left set by JS */
+}
+
+.os-window.minimized {
+    display: none !important;
+}
+
+.os-window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0;
+}
+
+.window-header {
+    height: 32px;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    cursor: default; /* changes to grab on hover in some OS, default is fine */
+    user-select: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.os-window.active .window-header {
+    background-color: #d0d0d0; /* visual feedback for focus */
+}
+
+.window-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.window-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.window-btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: transparent;
+    transition: color 0.2s;
+}
+
+.window-btn:hover {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.btn-minimize { background-color: #FFBD2E; }
+.btn-maximize { background-color: #27C93F; }
+.btn-close { background-color: #FF5F56; }
+
+.window-content {
+    flex-grow: 1;
+    background-color: #ffffff;
+    padding: 10px;
+    overflow: auto;
+    position: relative;
+}
